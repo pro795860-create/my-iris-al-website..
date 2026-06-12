@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iris AI • Browser‑Only Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <img src="file:///C:/Users/NITRO/.gemini/antigravity/brain/3bed5fb5-76a5-4d58-8fad-6cb7f004d131/iris_logo_1781151103712.png" alt="Iris AI" class="logo" />
+      <h1>Iris AI</h1>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <section id="chatWindow" class="chat-window"></section>
+
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="userInput" placeholder="Ask something…" autocomplete="off" required />
+      <button type="submit" class="send-btn">➤</button>
+    </form>
+  </div>
+
+  <script src="./app/app.js" type="module"></script>
+</body>
+</html>

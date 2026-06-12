@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Iris AI</title>
+  <style>
+    body {font-family: 'Inter', sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; background:#f0f2f5;}
+    a {padding:0.8rem 1.2rem; background:#1e90ff; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15); transition: 0.2s;}
+    a:hover {background:#187bcd;}
+    #backendPrompt {display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); color:#fff; padding:2rem; text-align:center; flex-direction:column; justify-content:center; align-items:center;}
+    .start-btn {margin-top:1rem; padding:0.6rem 1rem; background:#28a745; border:none; border-radius:6px; color:#fff; cursor:pointer; font-weight:600; text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+    .start-btn:hover {background:#218838;}
+  </style>
+</head>
+<body>
+  <!-- Use a relative link so it works perfectly on ngrok -->
+  <a href="index.html" id="dashboardLink">🚀 Open Iris AI Dashboard</a>
+
+  <div id="backendPrompt">
+    <p>👋 The Iris AI backend doesn't seem to be running.</p>
+    <p>Please double-click <strong>start_backend.bat</strong> in your project folder, then reload this page.</p>
+    <a href="javascript:window.location.reload()" class="start-btn">🔄 Reload Page</a>
+  </div>
+
+  <script>
+    async function checkBackend(){
+      // If we're already on a web server (like localhost or ngrok), everything is fine!
+      if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+        return; 
+      }
+      
+      // If the user opened this file directly from their hard drive (file://),
+      // we check if the local server is running.
+      try {
+        await fetch('http://127.0.0.1:8000/index.html', { mode: 'no-cors' });
+        // Server is running, so we update the link to point to the local web server
+        document.getElementById('dashboardLink').href = 'http://127.0.0.1:8000/index.html';
+      } catch(e) {
+        // Server is not running
+        document.getElementById('backendPrompt').style.display='flex';
+      }
+    }
+    checkBackend();
+  </script>
+</body>
+</html>
